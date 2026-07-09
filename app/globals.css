@@ -1,0 +1,78 @@
+@import "tailwindcss";
+
+:root {
+  --color-ink: #0f1e33;
+  --color-ink-2: #16294a;
+  --color-paper: #f2f4f7;
+  --color-card: #ffffff;
+  --color-line: #dde3ea;
+  --color-slate: #55647a;
+  --color-slate-2: #8391a5;
+  --color-signal: #e8a33d;
+  --color-signal-dim: #fbeed9;
+  --color-claimed: #2f8f5b;
+  --color-claimed-dim: #e3f3e9;
+  --color-danger: #c85a4a;
+}
+
+@theme inline {
+  --color-ink: var(--color-ink);
+  --color-ink-2: var(--color-ink-2);
+  --color-paper: var(--color-paper);
+  --color-card: var(--color-card);
+  --color-line: var(--color-line);
+  --color-slate: var(--color-slate);
+  --color-slate-2: var(--color-slate-2);
+  --color-signal: var(--color-signal);
+  --color-signal-dim: var(--color-signal-dim);
+  --color-claimed: var(--color-claimed);
+  --color-claimed-dim: var(--color-claimed-dim);
+  --color-danger: var(--color-danger);
+  --font-display: var(--font-display);
+  --font-body: var(--font-body);
+  --font-mono-data: var(--font-mono-data);
+}
+
+body {
+  background: var(--color-paper);
+  color: var(--color-ink);
+  font-family: var(--font-body), sans-serif;
+}
+
+.font-display {
+  font-family: var(--font-display), sans-serif;
+}
+
+.font-data {
+  font-family: var(--font-mono-data), monospace;
+}
+
+/* Dot-grid "map" texture used behind the header/scan panel */
+.map-grid {
+  background-image: radial-gradient(
+    var(--color-slate-2) 1px,
+    transparent 1px
+  );
+  background-size: 18px 18px;
+  opacity: 0.16;
+}
+
+/* Radar blip on unclaimed rows */
+@keyframes blip {
+  0% {
+    box-shadow: 0 0 0 0 rgba(232, 163, 61, 0.55);
+  }
+  100% {
+    box-shadow: 0 0 0 7px rgba(232, 163, 61, 0);
+  }
+}
+
+.blip::before {
+  content: "";
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  border-radius: 9999px;
+  background: var(--color-signal);
+  animation: blip 1.8s ease-out infinite;
+}
